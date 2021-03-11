@@ -7,25 +7,25 @@ using UnityEngine.AI;
 public class Enemy : MonoBehaviour
 {
     public float speed = 20.0f;
+    [Range(10.0f, 180.0f)]public float turnRate = 20.0f;
     public float health = 100.0f;
+    public GameObject target;
 
-    GameObject goalObj;
     NavMeshAgent movement;
     void Start()
     {
-        GameObject[] gameObjs = FindObjectsOfType<GameObject>();
-        foreach(GameObject go in gameObjs)
-        {
-            if (go.tag == "Exit")
-            {
-                goalObj = go;
-            }
-        }
-        movement.SetDestination(goalObj.transform.position);
+        movement = GetComponent<NavMeshAgent>();
         movement.speed = speed * 200.0f; //Speed gets multiplied as Terrain objects are 1kx1k areas(forced)
+        movement.angularSpeed = turnRate;
+        UpdateDestination();
     }
 
-    private void OnCollisionEnter(Collision collision)
+    public void UpdateDestination()
+    {
+        movement.SetDestination(target.transform.position);
+    }
+
+    public void OnCollisionEnter(Collision collision)
     {
         GameObject colGO = collision.gameObject;
 
