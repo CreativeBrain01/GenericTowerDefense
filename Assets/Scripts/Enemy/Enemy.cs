@@ -36,7 +36,8 @@ public class Enemy : MonoBehaviour
         } else if (colGO.tag == "Projectile")
         {
             //Add code related to checking how much damage they would ACTUALLY take here
-            health--;
+            Projectile proj = colGO.GetComponent<Projectile>();
+            health -= proj.damage;
             if (health <= 0)
             {
                 Destroy(this);
