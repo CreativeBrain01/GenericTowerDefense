@@ -7,40 +7,64 @@ using UnityEngine.AI;
 public class Enemy : MonoBehaviour
 {
     public float speed = 20.0f;
-    [Range(10.0f, 180.0f)]public float turnRate = 20.0f;
     public float health = 100.0f;
+
     public GameObject target;
+
+    public Vector3 Velocity
+    {
+        get { return movement.velocity; }
+        set { movement.velocity = value; }
+    }
+
+    public float TimeAlive { get; set; } = 0;
 
     NavMeshAgent movement;
     void Start()
     {
         movement = GetComponent<NavMeshAgent>();
         movement.speed = speed * 200.0f; //Speed gets multiplied as Terrain objects are 1kx1k areas(forced)
-        movement.angularSpeed = turnRate;
-        UpdateDestination();
+        UpdateDestination(target);
     }
 
-    public void UpdateDestination()
+    void Update()
+    {
+        movement.speed = speed;
+        TimeAlive += Time.deltaTime;
+    }
+
+    public void ApplyForce(Vector3 force)
+    {
+        //
+    }
+
+    public void Stop()
+    {
+        movement.isStopped = true;
+    }
+
+    public void UpdateDestination(GameObject target)
     {
         movement.SetDestination(target.transform.position);
+        this.target = target;
     }
 
-    private void OnCollisionEnter(Collision collision)
+    public void OnCollisionEnter(Collision collision)
     {
         GameObject colGO = collision.gameObject;
 
         if (colGO.tag == "Exit")
         {
-            //Run code related to life loss here
             Destroy(this.gameObject);
-        } else if (colGO.tag == "Projectile")
+        }
+        else if (colGO.tag == "Projectile")
         {
-            //Add code related to checking how much damage they would ACTUALLY take here
             Projectile proj = colGO.GetComponent<Projectile>();
             health -= proj.damage;
             if (health <= 0)
             {
                 Destroy(this.gameObject);
+                GameController.score += 25;
             }
         }
     }

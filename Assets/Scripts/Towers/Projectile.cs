@@ -14,11 +14,31 @@ public class Projectile : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        target = FindObjectOfType<Enemy>().gameObject;
     }
 
     private void Update()
     {
+        if (target == null)
+        {
+            Enemy[] gObjs = FindObjectsOfType<Enemy>();
+            if (gObjs.Length == 0)
+            {
+                Destroy(this.gameObject);
+                return;
+            }
+
+            float shortestDistance = float.MaxValue;
+            foreach (Enemy e in gObjs)
+            {
+                float dist = Vector3.Distance(e.transform.position, transform.position);
+                if (dist < shortestDistance)
+                {
+                    shortestDistance = dist;
+                    target = e.gameObject;
+                }
+            }
+        }
+
         Vector3 direction = Vector3.zero;
 
         direction += (target.transform.position - transform.position).normalized;

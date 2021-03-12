@@ -6,13 +6,15 @@ public class PathWaypoint : MonoBehaviour
 {
     public GameObject nextWayPoint;
 
-    private void OnCollisionEnter(Collision collision)
+    public void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject.tag == "Enemy")
         {
             Enemy enemy = collision.gameObject.GetComponent<Enemy>();
-            enemy.target = nextWayPoint;
-            enemy.UpdateDestination();
+            if (enemy.target.GetComponent<PathWaypoint>() == this)
+            {
+                enemy.UpdateDestination(nextWayPoint);
+            }
         }
     }
 }
