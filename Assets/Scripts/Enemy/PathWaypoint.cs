@@ -6,7 +6,7 @@ public class PathWaypoint : MonoBehaviour
 {
     public GameObject nextWayPoint;
 
-    public void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Enemy")
         {

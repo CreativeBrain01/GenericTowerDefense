@@ -25,14 +25,14 @@ public class Enemy : MonoBehaviour
         movement.SetDestination(target.transform.position);
     }
 
-    public void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter(Collision collision)
     {
         GameObject colGO = collision.gameObject;
 
         if (colGO.tag == "Exit")
         {
             //Run code related to life loss here
-            Destroy(this);
+            Destroy(this.gameObject);
         } else if (colGO.tag == "Projectile")
         {
             //Add code related to checking how much damage they would ACTUALLY take here
@@ -40,7 +40,7 @@ public class Enemy : MonoBehaviour
             health -= proj.damage;
             if (health <= 0)
             {
-                Destroy(this);
+                Destroy(this.gameObject);
             }
         }
     }

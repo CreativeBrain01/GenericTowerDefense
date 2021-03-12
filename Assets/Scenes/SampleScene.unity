@@ -135,6 +135,8 @@ GameObject:
   - component: {fileID: 13106944}
   - component: {fileID: 13106943}
   - component: {fileID: 13106942}
+  - component: {fileID: 13106947}
+  - component: {fileID: 13106946}
   m_Layer: 0
   m_Name: Projectile
   m_TagString: Projectile
@@ -174,7 +176,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 11e5151ca23fc0147a64054abad73f4d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -212,12 +214,42 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 13106941}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 187.20518, y: 28.763458, z: -326.3088}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -335, y: 32, z: 518}
+  m_LocalScale: {x: 20, y: 20, z: 20}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &13106946
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 13106941}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 1
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 2
+--- !u!114 &13106947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 13106941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67e23bfd97c5993428d9c2407ca1c93d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 30
+  damage: 1
 --- !u!1 &168405421
 GameObject:
   m_ObjectHideFlags: 0
@@ -461,6 +493,7 @@ GameObject:
   - component: {fileID: 950151396}
   - component: {fileID: 950151395}
   - component: {fileID: 950151394}
+  - component: {fileID: 950151397}
   m_Layer: 8
   m_Name: PathWaypoint
   m_TagString: Untagged
@@ -516,6 +549,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 950151392}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!54 &950151397
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 950151392}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 3
 --- !u!1 &963155589
 GameObject:
   m_ObjectHideFlags: 0
@@ -741,6 +790,7 @@ GameObject:
   - component: {fileID: 1283114765}
   - component: {fileID: 1283114764}
   - component: {fileID: 1283114763}
+  - component: {fileID: 1283114766}
   m_Layer: 8
   m_Name: PathWaypoint (2)
   m_TagString: Untagged
@@ -796,6 +846,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1283114761}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!54 &1283114766
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1283114761}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 3
 --- !u!1 &1421627486
 GameObject:
   m_ObjectHideFlags: 0
@@ -806,6 +872,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1421627487}
   - component: {fileID: 1421627488}
+  - component: {fileID: 1421627489}
   m_Layer: 8
   m_Name: EnemyGoalObj
   m_TagString: Exit
@@ -840,6 +907,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &1421627489
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1421627486}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 3
 --- !u!1 &1612538642
 GameObject:
   m_ObjectHideFlags: 0
@@ -854,6 +937,7 @@ GameObject:
   - component: {fileID: 1612538644}
   - component: {fileID: 1612538643}
   - component: {fileID: 1612538645}
+  - component: {fileID: 1612538649}
   m_Layer: 8
   m_Name: Enemy
   m_TagString: Enemy
@@ -894,7 +978,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 542d76d26db59794882d5c7a37ffa59c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -954,8 +1038,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1612538642}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 204, y: 15.3, z: -515.4}
-  m_LocalScale: {x: 10, y: 10, z: 10}
+  m_LocalPosition: {x: 204, y: 38.3, z: -515.4}
+  m_LocalScale: {x: 30, y: 30, z: 30}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
@@ -976,6 +1060,22 @@ MonoBehaviour:
   turnRate: 20
   health: 100
   target: {fileID: 950151392}
+--- !u!54 &1612538649
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1612538642}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 3
 --- !u!1 &1630312505
 GameObject:
   m_ObjectHideFlags: 0
@@ -988,6 +1088,7 @@ GameObject:
   - component: {fileID: 1630312509}
   - component: {fileID: 1630312508}
   - component: {fileID: 1630312507}
+  - component: {fileID: 1630312510}
   m_Layer: 8
   m_Name: PathWaypoint (3)
   m_TagString: Untagged
@@ -1043,6 +1144,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1630312505}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!54 &1630312510
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1630312505}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 3
 --- !u!1 &1715667117
 GameObject:
   m_ObjectHideFlags: 0
@@ -1055,6 +1172,7 @@ GameObject:
   - component: {fileID: 1715667121}
   - component: {fileID: 1715667120}
   - component: {fileID: 1715667119}
+  - component: {fileID: 1715667122}
   m_Layer: 8
   m_Name: PathWaypoint (1)
   m_TagString: Untagged
@@ -1110,6 +1228,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1715667117}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!54 &1715667122
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1715667117}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 3
 --- !u!1 &1798801382
 GameObject:
   m_ObjectHideFlags: 0
@@ -1122,6 +1256,7 @@ GameObject:
   - component: {fileID: 1798801386}
   - component: {fileID: 1798801385}
   - component: {fileID: 1798801384}
+  - component: {fileID: 1798801387}
   m_Layer: 8
   m_Name: PathWaypoint (5)
   m_TagString: Untagged
@@ -1177,6 +1312,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1798801382}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!54 &1798801387
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1798801382}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 3
 --- !u!1 &1944327900
 GameObject:
   m_ObjectHideFlags: 0
@@ -1189,6 +1340,7 @@ GameObject:
   - component: {fileID: 1944327904}
   - component: {fileID: 1944327903}
   - component: {fileID: 1944327902}
+  - component: {fileID: 1944327905}
   m_Layer: 8
   m_Name: PathWaypoint (4)
   m_TagString: Untagged
@@ -1244,6 +1396,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1944327900}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!54 &1944327905
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1944327900}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 3
 --- !u!1 &2013437694
 GameObject:
   m_ObjectHideFlags: 0
