@@ -108,7 +108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3479b6273bfb624aa2a40bec8b25229, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireRate: 1
+  fireRate: 3
   range: 300
   targetTag: Enemy
   projectile: {fileID: 2965018575956780366, guid: 032b230d21ca7a64b84da31073b6cbcb, type: 3}

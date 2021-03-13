@@ -13,10 +13,10 @@ public class EnemySpawner : MonoBehaviour
     private float enemySpace = 3; //Delay between each enemy in a wave in seconds
     private float spawnTime = 0;
 
+    public int EnemiesLeft { get { return ct; } }
+
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P)) ct = 6;
-
         if (ct > 0)
         {
             if (spawnTime < enemySpace) spawnTime += Time.deltaTime;
@@ -32,7 +32,8 @@ public class EnemySpawner : MonoBehaviour
 
     public void SpawnWave(int count, float health, float speed, float enemySpacing)
     {
-        ct = count; hp = health; spd = 30; //30 for now as any higher and enemies don't work
-        enemySpace = enemySpacing;
+        ct += count; hp = health; spd = speed;
+        enemySpace = enemySpacing; 
+        if (ct <= 1) spawnTime = enemySpacing;
     }
 }

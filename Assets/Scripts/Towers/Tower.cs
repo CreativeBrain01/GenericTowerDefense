@@ -28,11 +28,8 @@ public class Tower : MonoBehaviour
         if(objectsInRange.Count > 0)
         {
             fireTimer -= Time.deltaTime;
-            //objectsInRange.Reverse();
             if(fireTimer <= 0)
             {
-                //float longestLiving = float.MaxValue;
-
                 fireTimer = fireRate;
                 Fire(objectsInRange.ToArray()[0]);
             }
@@ -46,7 +43,8 @@ public class Tower : MonoBehaviour
 
     private void Fire(GameObject target)
     {
-        Projectile newProj = GameObject.Instantiate<GameObject>(projectile, transform.position, Quaternion.identity).GetComponent<Projectile>();
+        Vector3 spawnPos = new Vector3(transform.position.x, transform.position.y + transform.lossyScale.y, transform.position.z);
+        Projectile newProj = GameObject.Instantiate<GameObject>(projectile, spawnPos, Quaternion.identity).GetComponent<Projectile>();
         newProj.target = target;
     }
 }
