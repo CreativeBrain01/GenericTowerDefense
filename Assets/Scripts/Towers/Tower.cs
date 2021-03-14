@@ -2,15 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public class Tower : MonoBehaviour
 {
     public float fireRate;
     public float range;
     public string targetTag;
+    public int towerCost;
 
     public GameObject projectile;
 
     float fireTimer = 0;
+    private Rigidbody rb;
+
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+        rb.constraints = RigidbodyConstraints.FreezePosition;
+        rb.constraints = RigidbodyConstraints.FreezeRotationX;
+        rb.constraints = RigidbodyConstraints.FreezeRotationZ;
+        rb.useGravity = false;
+        rb.isKinematic = true;
+    }
 
     private void Update()
     {
@@ -27,6 +40,8 @@ public class Tower : MonoBehaviour
 
         if(objectsInRange.Count > 0)
         {
+            transform.LookAt(objectsInRange[0].transform);
+
             fireTimer -= Time.deltaTime;
             if(fireTimer <= 0)
             {
@@ -38,7 +53,6 @@ public class Tower : MonoBehaviour
         {
             fireTimer = 0;
         }
-
     }
 
     private void Fire(GameObject target)
