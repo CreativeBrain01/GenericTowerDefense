@@ -37,7 +37,7 @@ public class GameController : MonoBehaviour
             int EnemyCount = 2;
             EnemyCount = (int)Exponent(EnemyCount, currentWave);
 
-            int EnemyHP = 100 + (25 * (int)Exponent(1.1, currentWave));
+            int EnemyHP = 100 + (25 * (int)Exponent(1.25, currentWave));
             int EnemySpeed = 30; //static 30 until enemy rotation speed can be fixed.
             float TimeBetweenSpawns = 5 - (1 - (lives / maxLives));
             waves.SpawnWave(EnemyCount, EnemyHP, EnemySpeed, TimeBetweenSpawns);
