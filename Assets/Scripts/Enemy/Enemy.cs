@@ -4,10 +4,14 @@ using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(NavMeshAgent))]
+[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(Collider))]
 public class Enemy : MonoBehaviour
 {
     public float speed = 20.0f;
     public float health = 100.0f;
+
+    public Material[] materials;
 
     public GameObject target;
 
@@ -25,6 +29,9 @@ public class Enemy : MonoBehaviour
         movement = GetComponent<NavMeshAgent>();
         movement.speed = speed * 200.0f; //Speed gets multiplied as Terrain objects are 1kx1k areas(forced)
         UpdateDestination(target);
+
+        int randIndex = Random.Range(0, materials.Length-1);
+        gameObject.GetComponent<MeshRenderer>().material = materials[randIndex];
     }
 
     void Update()
