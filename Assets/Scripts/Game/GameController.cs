@@ -5,6 +5,12 @@ using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
+    public Text livesTxt;
+    public Text scoreTxt;
+    public Text waveTxt;
+    public Text enemiesTxt;
+    public Text towerDescTxt;
+    public GameObject nextWaveTxt;
     public EnemySpawner waves;
     public Tower startingTower;
 
@@ -13,10 +19,7 @@ public class GameController : MonoBehaviour
 
     private static int currentWave = 0;
     private static int maxLives = 100;
-
-    public static KeyCode nextWaveKey = KeyCode.Space;
-
-    public static int GetWave { get { return currentWave; } }
+    private static int maxEnemies = 5;
 
     private void Start()
     {
@@ -26,7 +29,9 @@ public class GameController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(nextWaveKey) && waves.EnemiesLeft <= waves.maxEnemies)
+        UpdateUI();
+
+        if (Input.GetKeyDown(KeyCode.Space) && waves.EnemiesLeft <= maxEnemies)
         {
             currentWave++;
             int EnemyCount = 2 * currentWave;
@@ -56,6 +61,27 @@ public class GameController : MonoBehaviour
                 score += 100;
             }
         }
+    }
+
+    private void UpdateUI()
+    {
+        livesTxt.text = "Lives: " + lives;
+        scoreTxt.text = "Score: " + score;
+        waveTxt.text = "Wave: " + currentWave;
+        int EnemiesLeft = waves.EnemiesLeft + FindObjectsOfType<Enemy>().Length;
+        enemiesTxt.text = "Enemies Left: " + EnemiesLeft;
+        nextWaveTxt.SetActive(waves.EnemiesLeft <= maxEnemies);
+
+        Tower tower = TowerPlacer.tower.GetComponent<Tower>();
+
+        string desc = tower.Description + "\n\n" + 
+            "*" + tower.SplashText + "*\n\n" +
+            "Range: " + tower.range + "\n" +
+            "Damage: " + tower.damage + "\n" +
+            "Firerate: " + tower.fireRate + "\n" +
+            "Turret Cost: " + tower.towerCost;
+
+        towerDescTxt.text = desc;
     }
 
     public static double Exponent(double leftVal, int rightVal)

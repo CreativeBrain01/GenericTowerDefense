@@ -7,8 +7,6 @@ public class TowerPlacer : MonoBehaviour
     public static GameObject tower;
     public GameObject rangeDisplay;
 
-    public KeyCode viewRangeKey = KeyCode.LeftShift;
-
     void Update()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -20,7 +18,7 @@ public class TowerPlacer : MonoBehaviour
                 GameObject.Instantiate<GameObject>(tower.gameObject, hitInfo.point, Quaternion.identity);
                 GameController.score -= tower.GetComponent<Tower>().towerCost;
             }
-            if (Input.GetKey(viewRangeKey) && collider.GetComponent<Tower>())
+            if (Input.GetKey(KeyCode.LeftShift) && collider.GetComponent<Tower>())
             {
                 Tower selTower = collider.GetComponent<Tower>();
                 Vector3 towerPos = collider.transform.position;

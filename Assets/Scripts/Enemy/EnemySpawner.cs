@@ -6,7 +6,6 @@ public class EnemySpawner : MonoBehaviour
 {
     public Enemy spawnObj;
     public GameObject initialWaypoint;
-    public int maxEnemies = 5;
 
     private int ct = 0; //# of enemies in the wave
     private float hp = 100; //Enemy HP for the wave
@@ -24,7 +23,7 @@ public class EnemySpawner : MonoBehaviour
             if (spawnTime >= enemySpace)
             {
                 spawnObj.health = hp; spawnObj.speed = spd; spawnObj.target = initialWaypoint;
-                Instantiate(spawnObj.gameObject, transform.position, transform.rotation);
+                Instantiate(spawnObj.gameObject);
                 spawnTime = 0;
                 ct--;
             }
