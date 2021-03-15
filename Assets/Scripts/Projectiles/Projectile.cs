@@ -14,6 +14,7 @@ public class Projectile : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        rb.useGravity = false;
     }
 
     private void Update()
@@ -43,7 +44,7 @@ public class Projectile : MonoBehaviour
 
         direction += (target.transform.position - transform.position).normalized;
 
-        rb.AddForce(direction * (speed * 200) * Time.deltaTime);
+        rb.AddForce(direction * (speed * 100) * Time.deltaTime);
     }
 
     private void OnCollisionEnter(Collision collision)

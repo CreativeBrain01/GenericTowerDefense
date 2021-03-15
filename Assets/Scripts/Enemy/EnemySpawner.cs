@@ -23,7 +23,7 @@ public class EnemySpawner : MonoBehaviour
             if (spawnTime >= enemySpace)
             {
                 spawnObj.health = hp; spawnObj.speed = spd; spawnObj.target = initialWaypoint;
-                Instantiate(spawnObj.gameObject);
+                Instantiate(spawnObj.gameObject, transform.position, transform.rotation);
                 spawnTime = 0;
                 ct--;
             }

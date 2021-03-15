@@ -10,6 +10,11 @@ public class SelectedTowerIndicator : MonoBehaviour
     public Color selectedColor;
     public Color normalColor;
 
+    /*private void Start()
+    {
+        TowerPlacer.tower = towerButtons[0].GetComponent<TowerButton>().tower;
+    }*/
+
     void Update()
     {
         if (towerButtons.Count != 0)
