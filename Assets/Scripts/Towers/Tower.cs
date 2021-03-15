@@ -3,14 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(MeshCollider))]
 public class Tower : MonoBehaviour
 {
     public float fireRate;
     public float range;
     public string targetTag;
     public int towerCost;
+    public int damage;
 
     public GameObject projectile;
+
+    public string Description = "Please Add A Description";
+    public string SplashText = "Please Add Some Funny Splash Text";
 
     float fireTimer = 0;
     private Rigidbody rb;
@@ -60,5 +65,6 @@ public class Tower : MonoBehaviour
         Vector3 spawnPos = new Vector3(transform.position.x, transform.position.y + transform.lossyScale.y, transform.position.z);
         Projectile newProj = GameObject.Instantiate<GameObject>(projectile, spawnPos, Quaternion.identity).GetComponent<Projectile>();
         newProj.target = target;
+        newProj.damage = damage;
     }
 }

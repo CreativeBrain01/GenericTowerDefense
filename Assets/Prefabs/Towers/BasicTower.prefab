@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1002517306000267}
   - component: {fileID: 23018872997818785}
   - component: {fileID: -3473050496178363887}
+  - component: {fileID: -716066070435641983}
   m_Layer: 9
   m_Name: BasicTower
   m_TagString: Untagged
@@ -96,10 +97,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireRate: 3
-  range: 300
+  range: 250
   targetTag: Enemy
   towerCost: 100
+  damage: 25
   projectile: {fileID: 2965018575956780366, guid: 032b230d21ca7a64b84da31073b6cbcb, type: 3}
+  Description: A medium range tower with low cost.
+  SplashText: Kind of looks like a pawn.
 --- !u!54 &-3473050496178363887
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -116,3 +120,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!64 &-716066070435641983
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 23174190697346305}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 1ae3b6cad3254b848942cea678f244c7, type: 3}
