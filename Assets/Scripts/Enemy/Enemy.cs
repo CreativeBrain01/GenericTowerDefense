@@ -64,15 +64,28 @@ public class Enemy : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
-        else if (colGO.tag == "Projectile")
+        else if (colGO.GetComponent<Projectile>())
         {
             Projectile proj = colGO.GetComponent<Projectile>();
             health -= proj.damage;
-            if (health <= 0)
+            DeathCheck();
+        } else if (colGO.GetComponent<Explosion>())
+        {
+            Explosion exp = colGO.GetComponent<Explosion>();
+            if (!exp.HasHit(this))
             {
-                Destroy(this.gameObject);
-                GameController.score += 25;
+                health -= exp.damage;
+                DeathCheck();
             }
+        }
+    }
+
+    private void DeathCheck()
+    {
+        if (health <= 0)
+        {
+            Destroy(this.gameObject);
+            GameController.score += 25;
         }
     }
 }

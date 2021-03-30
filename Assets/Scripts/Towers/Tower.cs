@@ -30,28 +30,18 @@ public class Tower : MonoBehaviour
         rb.isKinematic = true;
     }
 
-    private void Update()
+    protected void Update()
     {
         Debug.DrawLine(transform.position, (transform.forward * range) + transform.position);
-        GameObject[] gameObjects = GameObject.FindGameObjectsWithTag(targetTag);
-        List<GameObject> objectsInRange = new List<GameObject>();
-        foreach(GameObject go in gameObjects)
-        {
-            if (Vector3.Distance(go.transform.position, transform.position) < range)
-            {
-                objectsInRange.Add(go);
-            }
-        }
+        List<GameObject> objectsInRange = FindInRange();
 
-        if(objectsInRange.Count > 0)
+        if (objectsInRange.Count > 0)
         {
-            transform.LookAt(objectsInRange[0].transform);
-
             fireTimer -= Time.deltaTime;
-            if(fireTimer <= 0)
+            if (fireTimer <= 0)
             {
                 fireTimer = fireRate;
-                Fire(objectsInRange.ToArray()[0]);
+                Fire(objectsInRange);
             }
         }
         else
@@ -60,8 +50,26 @@ public class Tower : MonoBehaviour
         }
     }
 
-    private void Fire(GameObject target)
+    protected List<GameObject> FindInRange()
     {
+        GameObject[] gameObjects = GameObject.FindGameObjectsWithTag(targetTag);
+        List<GameObject> objectsInRange = new List<GameObject>();
+        foreach (GameObject go in gameObjects)
+        {
+            if (Vector3.Distance(go.transform.position, transform.position) < range)
+            {
+                objectsInRange.Add(go);
+            }
+        }
+
+        return objectsInRange;
+    }
+
+    protected virtual void Fire(List<GameObject> inRange)
+    {
+        transform.LookAt(inRange[0].transform);
+        GameObject target = inRange[0];
+
         Vector3 spawnPos = new Vector3(transform.position.x, transform.position.y + transform.lossyScale.y, transform.position.z);
         Projectile newProj = GameObject.Instantiate<GameObject>(projectile, spawnPos, Quaternion.identity).GetComponent<Projectile>();
         newProj.target = target;

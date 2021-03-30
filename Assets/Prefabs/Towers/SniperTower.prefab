@@ -129,7 +129,7 @@ MonoBehaviour:
   fireRate: 8
   range: 600
   targetTag: Enemy
-  towerCost: 800
+  towerCost: 425
   damage: 400
   projectile: {fileID: 6145395923131001098, guid: 2ece8d55e1b2ec147835a13d563d9d14, type: 3}
   Description: A long range tower that deals high damage

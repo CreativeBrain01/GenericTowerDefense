@@ -5,21 +5,20 @@ using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
-    public Text livesTxt;
-    public Text scoreTxt;
-    public Text waveTxt;
-    public Text enemiesTxt;
-    public Text towerDescTxt;
-    public GameObject nextWaveTxt;
     public EnemySpawner waves;
     public Tower startingTower;
 
     public static int score = 100;
     public static int lives = 100;
+    public static int maxEnemies = 5;
+
+    public static KeyCode nextWaveControl = KeyCode.Space;
+    public static KeyCode viewRangeControl = KeyCode.LeftShift;
 
     private static int currentWave = 0;
     private static int maxLives = 100;
-    private static int maxEnemies = 5;
+
+    public static int GetWave { get { return currentWave; } }
 
     private void Start()
     {
@@ -29,9 +28,7 @@ public class GameController : MonoBehaviour
 
     private void Update()
     {
-        UpdateUI();
-
-        if (Input.GetKeyDown(KeyCode.Space) && waves.EnemiesLeft <= maxEnemies)
+        if (Input.GetKeyDown(nextWaveControl) && waves.EnemiesLeft <= maxEnemies)
         {
             currentWave++;
             int EnemyCount = 2 * currentWave;
@@ -61,52 +58,5 @@ public class GameController : MonoBehaviour
                 score += 100;
             }
         }
-    }
-
-    private void UpdateUI()
-    {
-        livesTxt.text = "Lives: " + lives;
-        scoreTxt.text = "Score: " + score;
-        waveTxt.text = "Wave: " + currentWave;
-        int EnemiesLeft = waves.EnemiesLeft + FindObjectsOfType<Enemy>().Length;
-        enemiesTxt.text = "Enemies Left: " + EnemiesLeft;
-        nextWaveTxt.SetActive(waves.EnemiesLeft <= maxEnemies);
-
-        Tower tower = TowerPlacer.tower.GetComponent<Tower>();
-
-        string desc = tower.Description + "\n\n" + 
-            "*" + tower.SplashText + "*\n\n" +
-            "Range: " + tower.range + "\n" +
-            "Damage: " + tower.damage + "\n" +
-            "Firerate: " + tower.fireRate + "\n" +
-            "Turret Cost: " + tower.towerCost;
-
-        towerDescTxt.text = desc;
-    }
-
-    public static double Exponent(double leftVal, int rightVal)
-    {
-        if (rightVal == 0) return 1;
-        if (rightVal == 1) return leftVal;
-        if (rightVal == -1) return 1 / leftVal;
-
-        double result = leftVal;
-        if (rightVal >= 2)
-        {
-            for (int i = 1; i < rightVal; i++)
-            {
-                result *= leftVal;
-            }
-        }
-        else if (rightVal <= -2)
-        {
-            for (int i = -1; i > rightVal; i--)
-            {
-                result *= leftVal;
-            }
-            result = 1 / result;
-        }
-
-        return result;
     }
 }

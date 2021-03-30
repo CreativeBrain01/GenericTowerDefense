@@ -17,8 +17,13 @@ public class TowerPlacer : MonoBehaviour
             {
                 GameObject.Instantiate<GameObject>(tower.gameObject, hitInfo.point, Quaternion.identity);
                 GameController.score -= tower.GetComponent<Tower>().towerCost;
+            } else if (Input.GetMouseButtonDown(1) && collider.GetComponent<Tower>())
+            {
+                int scoreToAdd = Mathf.RoundToInt(collider.GetComponent<Tower>().towerCost / 2);
+                GameController.score += Utility.multipleRounding(scoreToAdd, 25);
+                Destroy(collider.gameObject);
             }
-            if (Input.GetKey(KeyCode.LeftShift) && collider.GetComponent<Tower>())
+            if (Input.GetKey(GameController.viewRangeControl) && collider.GetComponent<Tower>())
             {
                 Tower selTower = collider.GetComponent<Tower>();
                 Vector3 towerPos = collider.transform.position;

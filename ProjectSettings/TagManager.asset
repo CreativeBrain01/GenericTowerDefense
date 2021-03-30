@@ -8,6 +8,7 @@ TagManager:
   - Tower
   - Exit
   - Projectile
+  - Explosion
   layers:
   - Default
   - TransparentFX
